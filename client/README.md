@@ -1,8 +1,28 @@
-# React + Vite
+# Client End
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Initial Setup
+1. cd client
+2. npm install
+3. npm run dev
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Frontend File-Folder Structure
+
+frontend/
+  ├── node_modules/             # Dependencies installed via npm/yarn
+  ├── public/                   # Public assets and HTML template
+  ├── src/                      # Source code
+  │    ├── assets/              # Static assets (e.g., images, fonts)
+  │    ├── components/          # Reusable React components
+  │    ├── containers/          # Components for specific pages/views
+  │    ├── contexts/            # Context providers for state management
+  │    ├── pages/               # Top-level components for each page
+  │    ├── services/            # API services, if any
+  │    ├── styles/              # Stylesheets
+  │    ├── utils/               # Utility functions and helper methods
+  │    ├── App.jsx               # Main application component
+  │    ├── main.jsx             # Entry point for the React app
+  ├── package.json              # Project dependencies and scripts
+  ├── .env                     # Environment variables (store sensitive data here)
+  ├── .gitignore               # Ignore files/folders in version control
+  └── README.md                # Documentation for the frontend
