@@ -5,6 +5,7 @@ const PORT = 3000
 const mongoose = require('mongoose')
 const User = require('./models/user.model')
 const jwt = require('jsonwebtoken')
+const bcrypt = require('bcryptjs')
 
 app.use(cors())
 app.use(bodyParser.json());
@@ -16,9 +17,10 @@ mongoose.connect('mongodb://localhost:27017/facultyDB')
 
 app.post('/faculty-register',async(req,res)=>{
     try{
+        const hashedPassword = await bcrypt.hash(req.body.password,10)
         const user = await User.create({
             email:req.body.email,
-            password:req.body.password,
+            password:hashedPassword,
         })
 
         res.json({ status:'ok' })
@@ -32,10 +34,11 @@ app.post('/faculty-register',async(req,res)=>{
 app.post('/faculty-login',async(req,res)=>{
         const user = await User.findOne({
             email:req.body.email,
-            password:req.body.password,
         })
+
+        const isPasswordValid = await bcrypt.compare(req.body.password,user.password)
     
-        if(user){
+        if(isPasswordValid){
             const token = jwt.sign({
                 email:req.body.email,
             },'JSSSTUHRMS')
